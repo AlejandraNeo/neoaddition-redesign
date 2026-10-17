@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoAddition - Prototipo de Rediseño Visual</title>
+  <!-- Tailwind CSS via allowlisted CDN -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* NeoAddition Custom Brand Palette Tokens */
+    :root {
+      --color-primary: #01055E;
+      --color-midnight: #090246;
+      --color-dark-alt: #010441;
+      --color-accent-cyan: #00E8F8;
+      --color-accent-soft: #A5E0F9;
+      --color-accent-warm: #FFBC7D;
+      --color-text-dark: #1E293B;
+      --color-text-body: #555555;
+      --color-bg-light: #F8FAFC;
+      --color-border-light: #ECECEC;
+    }
+
+    /* Ambient Glow & Custom Utilities */
+    .glow-cyan {
+      box-shadow: 0 0 35px -5px rgba(0, 232, 248, 0.45);
+    }
+    .glow-cyan-sm {
+      box-shadow: 0 0 15px -2px rgba(0, 232, 248, 0.35);
+    }
+    .glow-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glow-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -10px rgba(1, 5, 94, 0.12), 0 0 1px 1px rgba(0, 232, 248, 0.2);
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-dark {
+      background: rgba(9, 2, 70, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .grid-bg-pattern {
+      background-image: radial-gradient(rgba(0, 232, 248, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Infinite Marquee Animation for Logos */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#00E8F8] selection:text-[#01055E]">
+
+  <!-- Top Notification / Status Bar -->
+  <aside class="bg-[#010441] text-[#A5E0F9] text-xs py-2 px-4 border-b border-[#00E8F8]/20 flex justify-between items-center z-50 relative" aria-label="Aviso de prototipo">
+    <div class="max-w-7xl mx-auto w-full flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#00E8F8] animate-pulse"></span>
+        <span class="font-medium text-white">Prototipo Visual Oficial</span>
+        <span class="hidden sm:inline text-slate-400">|</span>
+        <span class="hidden sm:inline text-slate-300">Optimizando con la paleta de NeoAddition: <code class="text-[#00E8F8]">#01055E</code>, <code class="text-[#00E8F8]">#00E8F8</code>, <code class="text-[#FFBC7D]">#FFBC7D</code></span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#comparativa" class="text-[#00E8F8] hover:underline font-semibold flex items-center gap-1">
+          <span>Ver Comparativa de Mejoras</span> →
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar (Sticky with Glassmorphism) -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo NeoAddition -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#00E8F8] rounded-lg p-1">
+        <div class="w-10 h-10 rounded-xl bg-[#01055E] flex items-center justify-center font-black text-xl text-[#00E8F8] shadow-md group-hover:scale-105 transition-transform">
+          NA
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-tight text-[#01055E] leading-none">Neo<span class="text-[#00E8F8]">Addition</span></span>
+          <span class="text-[11px] font-medium text-slate-500 tracking-wider uppercase mt-1">Transformación Digital</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
+        <a href="#inicio" class="text-[#01055E] font-semibold border-b-2 border-[#00E8F8] pb-1">Inicio</a>
+        <a href="#soluciones" class="hover:text-[#01055E] transition-colors">Soluciones</a>
+        <a href="#interactivo" class="text-[#01055E] hover:text-[#00E8F8] transition-colors flex items-center gap-1 font-semibold">
+          <span>Demo Interactiva</span>
+          <span class="w-2 h-2 rounded-full bg-[#00E8F8] animate-ping"></span>
+        </a>
+        <a href="#partners" class="hover:text-[#01055E] transition-colors flex items-center gap-1">
+          <span>Partnerships</span>
+          <span class="bg-[#FFBC7D]/25 text-[#9A4E00] text-[10px] font-bold px-1.5 py-0.5 rounded-full">Oficial</span>
+        </a>
+        <a href="#metodologia" class="hover:text-[#01055E] transition-colors">Por qué elegirnos</a>
+        <a href="#clientes" class="hover:text-[#01055E] transition-colors">Clientes</a>
+        <a href="#testimonios" class="hover:text-[#01055E] transition-colors">Testimonios</a>
+      </nav>
+
+      <!-- Action Button (CTA) in Navbar -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="tel:+524420000000" class="text-xs font-semibold text-slate-600 hover:text-[#01055E] px-2 py-1">
+          Querétaro | Miami | Vancouver
+        </a>
+        <a href="#contacto" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-[#01055E] bg-[#00E8F8] hover:bg-[#34eefb] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+          Agendar Asesoría
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-[#01055E] hover:bg-slate-100" aria-label="Abrir Menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- HERO SECTION: Rediseñado con Jerarquía Semántica Unificada y Doble CTA -->
+  <section id="inicio" class="relative bg-gradient-to-br from-[#090246] via-[#01055E] to-[#010441] text-white pt-16 pb-24 overflow-hidden">
+    
+    <!-- Decorative Ambient Glows -->
+    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-[#00E8F8]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-[500px] h-[500px] bg-[#A5E0F9]/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute inset-0 grid-bg-pattern opacity-40 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Column: Unified Value Proposition -->
+        <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+          
+          <!-- Chip Kicker -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00E8F8]/15 border border-[#00E8F8]/30 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-[#00E8F8] animate-ping"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#00E8F8]">
+              Transformación Digital Ágil & Consultoría IT
+            </span>
+          </div>
+
+          <!-- Single Structured H1 Heading -->
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
+            Somos tu partner estratégico para <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00E8F8] via-[#A5E0F9] to-white">optimizar y acelerar</span> tus procesos de negocio.
+          </h1>
+
+          <!-- Value Proposition Subtitle -->
+          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Alineamos la visión de negocio con tecnologías de vanguardia como <strong class="text-white font-semibold">ServiceNow</strong> y <strong class="text-white font-semibold">Creatio</strong>. Impulsamos tu productividad, reducimos costos operativos y aceleramos el <em>time-to-market</em>.
+          </p>
+
+          <!-- Dual High-Converting CTAs -->
+          <div class="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <a href="#contacto" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-sm tracking-wide text-[#01055E] bg-[#00E8F8] hover:bg-[#3bf1ff] glow-cyan-sm hover:glow-cyan transition-all transform hover:-translate-y-0.5">
+              <span>Iniciar Diagnóstico Gratuito</span>
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="#soluciones" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-200 border border-slate-600 hover:border-[#00E8F8] hover:text-[#00E8F8] hover:bg-white/5 transition-all">
+              <span>Explorar Soluciones</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges Under Hero -->
+          <div class="pt-6 border-t border-slate-700/60 w-full flex flex-wrap items-center gap-y-3 gap-x-8 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#00E8F8]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>Partnership ServiceNow</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#FFBC7D]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>Creatio Certified Partner</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#A5E0F9]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span>Presencia: México, Canadá & USA</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Tech Dashboard Card (Anchor Visual with 3D Tilt & Hotspots) -->
+        <div class="lg:col-span-5 relative">
+          <div id="hero-tilt-card" class="relative mx-auto max-w-md lg:max-w-none rounded-2xl bg-gradient-to-b from-white/10 to-white/5 p-1 border border-white/15 backdrop-blur-xl shadow-2xl transition-transform duration-200 ease-out will-change-transform">
+            
+            <!-- Window Bar -->
+            <div class="bg-[#090246] px-4 py-3 rounded-t-xl border-b border-white/10 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-[#00E8F8]"></span>
+              </div>
+              <span class="text-[11px] font-mono text-[#A5E0F9]">neoaddition-digital-cockpit.io</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-[#00E8F8]/20 text-[#00E8F8] font-bold">ONLINE</span>
+            </div>
+
+            <!-- Dashboard Mockup Content -->
+            <div class="bg-[#010441]/90 p-5 rounded-b-xl space-y-4 font-sans text-xs">
+              
+              <!-- KPI Row -->
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-3">
+                  <span class="text-slate-400 text-[11px] block">Eficiencia Operativa</span>
+                  <div class="flex items-baseline gap-2 mt-1">
+                    <span class="text-2xl font-bold text-white">+84%</span>
+                    <span class="text-[10px] text-[#00E8F8] font-medium">↑ Automatizado</span>
+                  </div>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-3">
+                  <span class="text-slate-400 text-[11px] block">Time-to-Market</span>
+                  <div class="flex items-baseline gap-2 mt-1">
+                    <span class="text-2xl font-bold text-[#00E8F8]">-45%</span>
+                    <span class="text-[10px] text-[#FFBC7D] font-medium">Low-Code</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Process Flow Simulation -->
+              <div class="bg-white/5 border border-white/10 rounded-xl p-3 space-y-2.5">
+                <div class="flex justify-between items-center text-[11px]">
+                  <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-[#00E8F8]"></span>
+                    Flujo ServiceNow & SMO Activo
+                  </span>
+                  <span class="text-[#00E8F8] font-mono">100% SLA</span>
+                </div>
+                <!-- Progress bar -->
+                <div class="w-full bg-slate-700/60 rounded-full h-2 overflow-hidden">
+                  <div class="bg-gradient-to-r from-[#00E8F8] to-[#A5E0F9] h-2 rounded-full w-4/5 animate-pulse"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-slate-400">
+                  <span>Diagnóstico</span>
+                  <span>Digitalización</span>
+                  <span class="text-white font-semibold">Producción</span>
+                </div>
+              </div>
+
+              <!-- Integration Pill Matrix -->
+              <div class="p-3 bg-gradient-to-r from-[#01055E]/60 to-[#090246] rounded-xl border border-[#00E8F8]/30 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-lg bg-[#FFBC7D]/20 text-[#FFBC7D] flex items-center justify-center font-bold text-xs">
+                    C
+                  </div>
+                  <div>
+                    <span class="text-white font-medium block">Creatio Low-Code</span>
+                    <span class="text-slate-400 text-[10px]">Workflows Cross-Department</span>
+                  </div>
+                </div>
+                <span class="px-2 py-1 rounded bg-[#00E8F8] text-[#01055E] font-bold text-[10px]">SYNC</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT COUNTER STRIP: Franja de Métricas Corporativas (Elimina el '0' estático) -->
+  <section class="bg-[#01055E] text-white py-10 border-y border-[#00E8F8]/30 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        
+        <div class="text-center pt-4 md:pt-0">
+          <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00E8F8] tracking-tight">7+</p>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-200 mt-1">Años de Experiencia</p>
+          <span class="text-[11px] text-[#A5E0F9] hidden sm:block">Consultoría especializada</span>
+        </div>
+
+        <div class="text-center pt-4 md:pt-0 md:pl-4">
+          <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00E8F8] tracking-tight">100+</p>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-200 mt-1">Proyectos Exitosos</p>
+          <span class="text-[11px] text-[#A5E0F9] hidden sm:block">En múltiples industrias</span>
+        </div>
+
+        <div class="text-center pt-4 md:pt-0 md:pl-4">
+          <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00E8F8] tracking-tight">2.5M+</p>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-200 mt-1">Horas de Consultoría</p>
+          <span class="text-[11px] text-[#A5E0F9] hidden sm:block">Implementación y soporte</span>
+        </div>
+
+        <div class="text-center pt-4 md:pt-0 md:pl-4">
+          <p class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00E8F8] tracking-tight">200+</p>
+          <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-200 mt-1">Procesos Digitalizados</p>
+          <span class="text-[11px] text-[#A5E0F9] hidden sm:block">Con ServiceNow y Creatio</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE SOLUTIONS (Tarjetas de Servicios con Microcopy y Acciones Claras) -->
+  <section id="soluciones" class="py-20 bg-slate-50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#01055E] bg-[#A5E0F9]/30 px-3 py-1 rounded-full border border-[#00E8F8]/30">
+          Nuestros Pilares de Valor
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#01055E] tracking-tight">
+          Soluciones diseñadas para maximizar tu retorno de inversión
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Transformamos la complejidad de TI en procesos fluidos, gobernados y centrados en las metas de tu negocio.
+        </p>
+      </div>
+
+      <!-- 3 Service Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Estrategia de Negocios -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200/80 glow-card flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#01055E] text-[#00E8F8] flex items-center justify-center mb-6 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <span class="text-[11px] font-bold text-[#01055E] tracking-wider uppercase">Pilar 01</span>
+            <h3 class="text-xl font-bold text-[#01055E] mt-1 mb-3">Estrategia de Negocios</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Alineamos a tus líderes de tecnología y operaciones para diseñar un <em>roadmap</em> claro de adopción tecnológica, reduciendo riesgos y priorizando casos de uso de alto impacto.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-700 font-medium mb-8">
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Diagnóstico de madurez digital
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Definición de OKRs y KPIs de negocio
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Gestión integral del cambio organizacional
+              </li>
+            </ul>
+          </div>
+          <a href="#contacto" class="inline-flex items-center justify-between text-xs font-bold text-[#01055E] hover:text-[#00E8F8] bg-slate-50 hover:bg-[#01055E] p-3.5 rounded-xl transition-all group">
+            <span>Conocer Estrategia de Negocios</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 2: Digitalización de Procesos (Featured) -->
+        <div class="bg-white rounded-2xl p-8 border-2 border-[#00E8F8] glow-card flex flex-col justify-between relative shadow-lg">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#00E8F8] text-[#01055E] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+            Más Solicitado
+          </div>
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#00E8F8] text-[#01055E] flex items-center justify-center mb-6 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <span class="text-[11px] font-bold text-[#01055E] tracking-wider uppercase">Pilar 02</span>
+            <h3 class="text-xl font-bold text-[#01055E] mt-1 mb-3">Digitalización de Procesos</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Automatizamos flujos de trabajo repetitivos mediante plataformas Low-Code y No-Code líderes, eliminando silos informativos y multiplicando la velocidad de entrega de tu equipo.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-700 font-medium mb-8">
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Flujos automatizados con Creatio & ServiceNow
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Integración de ecosistemas heterogéneos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Portales de autoservicio para usuarios
+              </li>
+            </ul>
+          </div>
+          <a href="#contacto" class="inline-flex items-center justify-between text-xs font-bold text-white bg-[#01055E] hover:bg-[#090246] p-3.5 rounded-xl transition-all group">
+            <span>Ver Digitalización de Procesos</span>
+            <span class="text-[#00E8F8] group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Card 3: Service Management Office -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200/80 glow-card flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#090246] text-[#A5E0F9] flex items-center justify-center mb-6 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            </div>
+            <span class="text-[11px] font-bold text-[#01055E] tracking-wider uppercase">Pilar 03</span>
+            <h3 class="text-xl font-bold text-[#01055E] mt-1 mb-3">Service Management Office</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Estructuramos una oficina de gestión de servicios (SMO / ITSM / ESM) robusta para asegurar la continuidad operativa, gobierno de TI y cumplimiento riguroso de acuerdos de nivel de servicio (SLAs).
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-700 font-medium mb-8">
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Mejores prácticas ITIL 4 adaptadas
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Visibilidad y tableros en tiempo real
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E8F8]"></span> Soporte proactivo y mejora continua
+              </li>
+            </ul>
+          </div>
+          <a href="#contacto" class="inline-flex items-center justify-between text-xs font-bold text-[#01055E] hover:text-[#00E8F8] bg-slate-50 hover:bg-[#01055E] p-3.5 rounded-xl transition-all group">
+            <span>Explorar Service Management (SMO)</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECCIÓN DE IMAGEN INTERACTIVA: COMPARADOR VISUAL ANTES VS. DESPUÉS -->
+  <section id="interactivo" class="py-24 bg-[#010441] text-white relative overflow-hidden" style="background-color: #010441 !important;">
+    
+    <!-- Ambient Glows -->
+    <div class="absolute -top-40 right-10 w-96 h-96 bg-[#00E8F8]/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 left-10 w-96 h-96 bg-[#FFBC7D]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#00E8F8]/15 border border-[#00E8F8]/30">
+          <span class="w-2 h-2 rounded-full bg-[#00E8F8] animate-pulse"></span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#00E8F8]">
+            Visualizador Interactivo de Transformación
+          </span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+          El Impacto de la Transformación Digital
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Compara el antes y el después de digitalizar tus operaciones con NeoAddition. Puedes alternar entre vista deslizable o comparativa lado a lado.
+        </p>
+
+        <!-- View Mode Switcher + Scenario Selector -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
+          
+          <!-- Mode Toggle: Slider vs Side-by-Side -->
+          <div class="inline-flex p-1 rounded-xl bg-black/40 border border-white/10 text-xs">
+            <button onclick="setViewMode('slider')" id="btn-mode-slider" class="px-3.5 py-1.5 rounded-lg font-bold transition-all bg-[#00E8F8] text-[#01055E] shadow-sm flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 3 4 3m8-6l4 3-4 3"/></svg>
+              <span>Barra Deslizable</span>
+            </button>
+            <button onclick="setViewMode('sideBySide')" id="btn-mode-side" class="px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+              <span>Lado a Lado</span>
+            </button>
+          </div>
+
+          <span class="text-slate-500 hidden sm:inline">|</span>
+
+          <!-- Scenarios Buttons -->
+          <div class="flex flex-wrap justify-center gap-1.5" id="scenario-selector">
+            <button onclick="setScenario('itsm')" id="btn-itsm" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#01055E] text-[#00E8F8] border border-[#00E8F8]/50 shadow-sm">
+              1. ServiceNow (ITSM)
+            </button>
+            <button onclick="setScenario('crm')" id="btn-crm" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10">
+              2. Creatio (CRM / No-Code)
+            </button>
+            <button onclick="setScenario('smo')" id="btn-smo" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10">
+              3. Gobernanza SMO
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTAINER 1: INTERACTIVE SLIDER VIEW (Completely Opaque & Using Clip-Path) -->
+      <div id="view-slider-wrapper" class="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl select-none" style="height: 520px; background-color: #090246;">
+        
+        <!-- ================= LAYER 1: AFTER (Con NeoAddition) - 100% Solid Background ================= -->
+        <div id="after-layer" class="absolute inset-0 p-6 sm:p-10 flex flex-col justify-between overflow-hidden" style="width: 100%; height: 100%; background: #090246 !important; background-color: #090246 !important; z-index: 10;">
+          
+          <!-- Subtle Glow decoration (inside solid background) -->
+          <div class="absolute right-0 top-0 w-96 h-96 bg-[#00E8F8]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Card Header Info -->
+          <div class="relative z-10 flex justify-between items-start">
+            <div class="space-y-1.5">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#00E8F8] text-[#01055E] text-xs font-black uppercase tracking-wider shadow-sm">
+                <span>✓ Con NeoAddition</span>
+                <span class="text-[10px] bg-[#01055E] text-[#00E8F8] px-1.5 py-0.5 rounded font-mono">AUTOMATIZADO</span>
+              </span>
+              <h3 class="text-xl sm:text-2xl font-black text-white" id="after-title">Ecosistema Conectado ServiceNow & Creatio</h3>
+              <p class="text-xs text-[#A5E0F9]" id="after-subtitle">Flujo sin fricción, orquestación centralizada y 100% visibilidad</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl sm:text-4xl font-extrabold text-[#00E8F8]" id="after-metric-val">-84%</span>
+              <span class="block text-[11px] text-slate-300 font-semibold" id="after-metric-lbl">Tiempo de Resolución</span>
+            </div>
+          </div>
+
+          <!-- Cards Grid -->
+          <div class="relative z-10 my-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Card 1 -->
+            <div class="bg-white/10 border border-[#00E8F8]/40 rounded-2xl p-4 backdrop-blur-md relative group hover:border-[#00E8F8] transition-all">
+              <button onclick="toggleHotspot(1)" class="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-[#00E8F8] text-[#01055E] font-bold text-xs flex items-center justify-center shadow-lg" title="Ver detalle">
+                +
+              </button>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-[#00E8F8]"></span>
+                <span class="text-xs font-bold text-white" id="after-node1-title">Recepción Inteligente</span>
+              </div>
+              <p class="text-[11px] text-slate-300 leading-relaxed" id="after-node1-desc">Tickets clasificados por IA y enrutados automáticamente al equipo responsable.</p>
+              <div class="mt-3 flex items-center justify-between text-[10px] text-[#00E8F8] font-mono">
+                <span>SLA: Inmediato</span>
+                <span>Error: 0.1%</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white/10 border border-[#00E8F8]/40 rounded-2xl p-4 backdrop-blur-md relative group hover:border-[#00E8F8] transition-all">
+              <button onclick="toggleHotspot(2)" class="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-[#00E8F8] text-[#01055E] font-bold text-xs flex items-center justify-center shadow-lg" title="Ver detalle">
+                +
+              </button>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-[#FFBC7D]"></span>
+                <span class="text-xs font-bold text-white" id="after-node2-title">Workflows Low-Code</span>
+              </div>
+              <p class="text-[11px] text-slate-300 leading-relaxed" id="after-node2-desc">Aprobaciones automáticas en cadena sin correos manuales ni llamadas repetitivas.</p>
+              <div class="mt-3 flex items-center justify-between text-[10px] text-[#FFBC7D] font-mono">
+                <span>Aprobación: &lt; 15 min</span>
+                <span>Auditoría: 100%</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white/10 border border-[#00E8F8]/40 rounded-2xl p-4 backdrop-blur-md relative group hover:border-[#00E8F8] transition-all">
+              <button onclick="toggleHotspot(3)" class="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-[#00E8F8] text-[#01055E] font-bold text-xs flex items-center justify-center shadow-lg" title="Ver detalle">
+                +
+              </button>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <span class="text-xs font-bold text-white" id="after-node3-title">Tableros SMO en Vivo</span>
+              </div>
+              <p class="text-[11px] text-slate-300 leading-relaxed" id="after-node3-desc">Métricas y KPIs en tiempo real accesibles desde móviles o laptops por los directores.</p>
+              <div class="mt-3 flex items-center justify-between text-[10px] text-emerald-400 font-mono">
+                <span>Disponibilidad: 99.9%</span>
+                <span>Satisfacción: 98%</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Status Indicator -->
+          <div class="relative z-10 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-300">
+            <span class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#00E8F8] animate-ping"></span>
+              <span>Resultados certificados con ITIL 4 y metodologías ágiles</span>
+            </span>
+            <span class="text-[#00E8F8] font-bold text-xs">Arrastra la barra para comparar ← →</span>
+          </div>
+
+        </div>
+
+        <!-- ================= LAYER 2: BEFORE (Operación Tradicional) - 100% Solid Opaque & Clipped ================= -->
+        <div id="before-layer" class="absolute inset-0 p-6 sm:p-10 flex flex-col justify-between overflow-hidden" style="width: 100%; height: 100%; background: #0c1222 !important; background-color: #0c1222 !important; z-index: 20; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); -webkit-clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+          
+          <!-- Card Header Info -->
+          <div class="relative z-10 flex justify-between items-start">
+            <div class="space-y-1.5">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-500/20 text-red-300 text-xs font-black uppercase tracking-wider border border-red-500/40">
+                <span>✕ Operación Tradicional</span>
+                <span class="text-[10px] bg-red-900/80 text-red-200 px-1.5 py-0.5 rounded font-mono">MANUAL</span>
+              </span>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-200" id="before-title">Silos Informativos & Hojas de Cálculo</h3>
+              <p class="text-xs text-slate-400" id="before-subtitle">Procesos lentos, correos dispersos y falta total de visibilidad</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl sm:text-4xl font-extrabold text-red-400" id="before-metric-val">14 Días</span>
+              <span class="block text-[11px] text-slate-400 font-semibold" id="before-metric-lbl">Retraso Promedio</span>
+            </div>
+          </div>
+
+          <!-- Legacy Cards Grid (Exactly same layout for seamless alignment) -->
+          <div class="relative z-10 my-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Legacy Card 1 -->
+            <div class="bg-black/50 border border-slate-700 rounded-2xl p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="text-xs font-bold text-slate-300" id="before-node1-title">Entradas Manuales</span>
+              </div>
+              <p class="text-[11px] text-slate-400 leading-relaxed" id="before-node1-desc">Captura en Excel repetitiva con alto riesgo de error humano y duplicidad de registros.</p>
+              <div class="mt-3 text-[10px] text-red-400 font-mono">Error: 18.5% habitual</div>
+            </div>
+
+            <!-- Legacy Card 2 -->
+            <div class="bg-black/50 border border-slate-700 rounded-2xl p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="text-xs font-bold text-slate-300" id="before-node2-title">Aprobaciones Lentas</span>
+              </div>
+              <p class="text-[11px] text-slate-400 leading-relaxed" id="before-node2-desc">Hilos interminables de emails, llamadas y firmas en papel estancadas en bandejas de entrada.</p>
+              <div class="mt-3 text-[10px] text-amber-400 font-mono">Espera: 5 a 10 días</div>
+            </div>
+
+            <!-- Legacy Card 3 -->
+            <div class="bg-black/50 border border-slate-700 rounded-2xl p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-3 h-3 rounded-full bg-slate-500"></span>
+                <span class="text-xs font-bold text-slate-300" id="before-node3-title">Cero Visibilidad</span>
+              </div>
+              <p class="text-[11px] text-slate-400 leading-relaxed" id="before-node3-desc">Reportes obsoletos construidos manualmente al final de mes sin datos en tiempo real.</p>
+              <div class="mt-3 text-[10px] text-slate-400 font-mono">Retraso de datos: 30 días</div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Warning -->
+          <div class="relative z-10 pt-3 border-t border-slate-700 flex justify-between items-center text-xs text-slate-400">
+            <span>Alto costo operativo y clientes insatisfechos</span>
+            <span class="text-red-400 font-bold">Desliza a la derecha para ver la solución →</span>
+          </div>
+
+        </div>
+
+        <!-- ================= DRAGGABLE SLIDER DIVIDER HANDLE ================= -->
+        <div id="slider-handle" class="absolute top-0 bottom-0 z-30 cursor-ew-resize flex items-center justify-center pointer-events-none" style="left: 50%; transform: translateX(-50%);">
+          <!-- Center Glowing Line -->
+          <div class="w-1 bg-[#00E8F8] h-full shadow-[0_0_15px_#00E8F8]"></div>
+          <!-- Center Circular Knob -->
+          <div class="absolute w-12 h-12 rounded-full bg-[#00E8F8] text-[#01055E] flex items-center justify-center shadow-2xl border-4 border-[#01055E] pointer-events-auto cursor-grab active:cursor-grabbing hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTAINER 2: SIDE-BY-SIDE VIEW (Hidden by default, clean 2 columns) -->
+      <div id="view-side-wrapper" class="hidden max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Left Column: Before -->
+        <div class="bg-[#0c1222] p-7 rounded-3xl border border-red-500/30 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-500/20 text-red-300 text-xs font-black uppercase tracking-wider border border-red-500/30">
+                <span>✕ Operación Tradicional</span>
+              </span>
+              <span class="text-2xl font-black text-red-400" id="side-before-metric">14 Días</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" id="side-before-title">Silos Informativos & Hojas de Cálculo</h3>
+            <p class="text-xs text-slate-400 mb-6" id="side-before-sub">Procesos lentos, correos dispersos y falta total de visibilidad.</p>
+            
+            <div class="space-y-3">
+              <div class="bg-black/40 p-3 rounded-xl border border-slate-700">
+                <span class="text-xs font-bold text-slate-200 block mb-1">Entradas Manuales y Duplicadas</span>
+                <span class="text-[11px] text-slate-400">Captura repetitiva en Excel con 18% de margen de error.</span>
+              </div>
+              <div class="bg-black/40 p-3 rounded-xl border border-slate-700">
+                <span class="text-xs font-bold text-slate-200 block mb-1">Aprobaciones Demoradas</span>
+                <span class="text-[11px] text-slate-400">Correos perdidos y firmas en papel estancadas durante días.</span>
+              </div>
+              <div class="bg-black/40 p-3 rounded-xl border border-slate-700">
+                <span class="text-xs font-bold text-slate-200 block mb-1">Falta de Cuadros de Mando</span>
+                <span class="text-[11px] text-slate-400">Reportes mensuales que llegan tarde para corregir problemas.</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-700 text-xs text-red-400 font-semibold">
+            Resultado: Sobrecarga operativa y pérdida de clientes.
+          </div>
+        </div>
+
+        <!-- Right Column: After -->
+        <div class="bg-[#090246] p-7 rounded-3xl border border-[#00E8F8]/40 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#00E8F8] text-[#01055E] text-xs font-black uppercase tracking-wider">
+                <span>✓ Con NeoAddition</span>
+              </span>
+              <span class="text-2xl font-black text-[#00E8F8]" id="side-after-metric">-84%</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" id="side-after-title">Ecosistema Conectado ServiceNow & Creatio</h3>
+            <p class="text-xs text-[#A5E0F9] mb-6" id="side-after-sub">Flujo sin fricción, orquestación centralizada y 100% visibilidad.</p>
+            
+            <div class="space-y-3">
+              <div class="bg-white/10 p-3 rounded-xl border border-[#00E8F8]/30">
+                <span class="text-xs font-bold text-white block mb-1">Recepción Inteligente & Clasificación IA</span>
+                <span class="text-[11px] text-slate-300">Enrutamiento automático al equipo responsable al instante.</span>
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-[#00E8F8]/30">
+                <span class="text-xs font-bold text-white block mb-1">Workflows Low-Code & Aprobación Express</span>
+                <span class="text-[11px] text-slate-300">Validaciones en cadena en menos de 15 minutos sin fricción.</span>
+              </div>
+              <div class="bg-white/10 p-3 rounded-xl border border-[#00E8F8]/30">
+                <span class="text-xs font-bold text-white block mb-1">Tableros de Mando Ejecutivos en Vivo</span>
+                <span class="text-[11px] text-slate-300">Visibilidad 24/7 de SLAs y rendimiento en tiempo real.</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-[#00E8F8] font-bold">
+            Resultado: 99.9% cumplimiento de SLA y máxima agilidad.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hotspot Detail Modal / Popover -->
+      <div id="hotspot-modal" class="hidden max-w-xl mx-auto mt-6 bg-slate-900/95 backdrop-blur-xl border border-[#00E8F8] rounded-2xl p-6 text-white shadow-2xl transition-all">
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#00E8F8] animate-ping"></span>
+            <h4 class="font-bold text-sm text-[#00E8F8]" id="hotspot-modal-title">Detalle de Componente</h4>
+          </div>
+          <button onclick="closeHotspot()" class="text-slate-400 hover:text-white text-xs font-bold px-2 py-1 bg-white/10 rounded-lg">✕ Cerrar</button>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-200 mt-3 leading-relaxed" id="hotspot-modal-text"></p>
+        <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+          <span class="text-slate-400">Implementado por NeoAddition</span>
+          <a href="#contacto" class="text-[#00E8F8] font-bold hover:underline">Solicitar demo técnica →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AGILE TRANSFORMATION & PARTNERSHIPS (ServiceNow & Creatio) -->
+  <section id="partners" class="py-20 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#01055E] bg-[#A5E0F9]/30 px-3 py-1 rounded-full border border-[#00E8F8]/30">
+            Alianzas Estratégicas Globales
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#01055E] tracking-tight">
+            Transformación digital ágil con plataformas de clase mundial
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            No improvisamos. Diseñamos e implementamos tu plan de digitalización apoyados en las tecnologías empresariales mejor evaluadas por analistas internacionales (Gartner & Forrester).
+          </p>
+
+          <!-- Benefits List with styled checkmarks -->
+          <div class="space-y-4 pt-2">
+            
+            <div class="flex items-start gap-3.5">
+              <div class="w-6 h-6 rounded-lg bg-[#00E8F8]/20 text-[#01055E] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                ✓
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-[#01055E]">Alineación Negocio-TI</h3>
+                <p class="text-xs text-slate-600">Garantizamos que cada desarrollo responda directamente a metas financieras y operativas de la organización.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-6 h-6 rounded-lg bg-[#00E8F8]/20 text-[#01055E] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                ✓
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-[#01055E]">Despliegue Acelerado Low-Code / No-Code</h3>
+                <p class="text-xs text-slate-600">Reducción sustancial del ciclo de desarrollo con Creatio y ServiceNow, acortando tiempos de meses a semanas.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-6 h-6 rounded-lg bg-[#00E8F8]/20 text-[#01055E] flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                ✓
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-[#01055E]">Automatización e Hiper-eficiencia</h3>
+                <p class="text-xs text-slate-600">Eliminamos tareas manuales, incrementando la capacidad de respuesta y satisfacción de clientes y colaboradores.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4">
+            <a href="#contacto" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#01055E] hover:text-[#00E8F8] transition-colors">
+              <span>Hablar con un consultor certificado</span>
+              <span class="text-sm">→</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Interactive Partner Presentation Cards -->
+        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <!-- ServiceNow Partner Card -->
+          <div class="bg-gradient-to-br from-[#01055E] to-[#090246] p-7 rounded-2xl text-white shadow-xl flex flex-col justify-between border border-[#00E8F8]/30">
+            <div>
+              <div class="flex justify-between items-center mb-6">
+                <span class="text-xs font-mono font-bold text-[#00E8F8] bg-white/10 px-2.5 py-1 rounded">PARTNER</span>
+                <span class="w-3 h-3 rounded-full bg-[#00E8F8]"></span>
+              </div>
+              <h3 class="text-2xl font-black tracking-tight mb-2">ServiceNow</h3>
+              <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                Especialistas en ITSM, ITOM, Customer Service Management y flujos de trabajo empresariales conectados.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#A5E0F9]">
+              <span>Implementación Certificada</span>
+              <span class="text-[#00E8F8] font-bold">ITIL 4</span>
+            </div>
+          </div>
+
+          <!-- Creatio Partner Card -->
+          <div class="bg-gradient-to-br from-[#010441] to-[#1E293B] p-7 rounded-2xl text-white shadow-xl flex flex-col justify-between border border-[#FFBC7D]/40">
+            <div>
+              <div class="flex justify-between items-center mb-6">
+                <span class="text-xs font-mono font-bold text-[#FFBC7D] bg-white/10 px-2.5 py-1 rounded">OFFICIAL PARTNER</span>
+                <span class="w-3 h-3 rounded-full bg-[#FFBC7D]"></span>
+              </div>
+              <h3 class="text-2xl font-black tracking-tight mb-2">Creatio</h3>
+              <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                Plataforma líder en CRM y BPM No-Code para automatizar procesos de ventas, marketing y servicios con máxima agilidad.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#FFBC7D]">
+              <span>Plataforma No-Code</span>
+              <span class="font-bold">BPM + CRM</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US (Sustitución de guiones por Pills y Arquitectura de Valor) -->
+  <section id="metodologia" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#01055E] bg-[#A5E0F9]/30 px-3 py-1 rounded-full border border-[#00E8F8]/30">
+          Diferenciadores Clave
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#01055E] tracking-tight">
+          ¿Por qué elegir a NeoAddition?
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Diseñamos resultados medibles, no solo implementaciones técnicas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1: Experiencia del Cliente -->
+        <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-[#00E8F8]/15 text-[#01055E] flex items-center justify-center font-bold text-lg mb-5">
+            01
+          </div>
+          <h3 class="text-lg font-bold text-[#01055E] mb-3">Experiencia del Cliente</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-5">
+            Ponemos al usuario final en el centro de la digitalización para asegurar una adopción natural y fluida.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Mayor satisfacción NPS</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Aceleración de ventas</span>
+            <span class="px-2.5 py-1 rounded-lg bg-[#00E8F8]/15 text-[#01055E] text-xs font-bold">Rapidez de ejecución</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Excelencia Operacional -->
+        <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-[#01055E] text-[#00E8F8] flex items-center justify-center font-bold text-lg mb-5">
+            02
+          </div>
+          <h3 class="text-lg font-bold text-[#01055E] mb-3">Excelencia Operacional</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-5">
+            Eliminamos cuellos de botella y estandarizamos la comunicación interdepartamental en una sola fuente de verdad.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Mejora en productividad</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Colaboración cross-areas</span>
+            <span class="px-2.5 py-1 rounded-lg bg-[#00E8F8]/15 text-[#01055E] text-xs font-bold">Toma de decisiones ágil</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Time to Market -->
+        <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-[#090246] text-[#FFBC7D] flex items-center justify-center font-bold text-lg mb-5">
+            03
+          </div>
+          <h3 class="text-lg font-bold text-[#01055E] mb-3">Time to Market</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-5">
+            Desplegamos aplicaciones empresariales reduciendo los costos de ingeniería y acelerando el retorno de inversión.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Despliegues rápidos</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">Menores costos de TI</span>
+            <span class="px-2.5 py-1 rounded-lg bg-[#FFBC7D]/25 text-[#9A4E00] text-xs font-bold">Capacidad automatizada</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLIENT SOCIAL PROOF (Carrusel de Logotipos con Tratamiento Gráfico Limpio) -->
+  <section id="clientes" class="py-16 bg-white overflow-hidden border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
+      <p class="text-xs font-bold uppercase tracking-wider text-slate-500">
+        Empresas líderes que confían en nosotros
+      </p>
+    </div>
+
+    <!-- Infinite Marquee Mockup with actual client badges -->
+    <div class="relative w-full overflow-hidden">
+      <!-- Gradient Fade edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+      
+      <div class="animate-marquee flex items-center gap-12 text-slate-400 font-semibold text-sm">
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Seguros Monterrey New York Life
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Corporativo Financiero Global
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Grupo Retail & Logística
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Telecomunicaciones & Media
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Industria Manufacturera
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Sector Salud & Farmacéutico
+        </div>
+        <!-- Duplicate set for infinite loop -->
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Seguros Monterrey New York Life
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Corporativo Financiero Global
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Grupo Retail & Logística
+        </div>
+        <div class="px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:text-[#01055E] hover:border-[#00E8F8] transition-colors shrink-0">
+          Telecomunicaciones & Media
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (Jerarquía H2 y Bento Grid de Respaldo) -->
+  <section id="testimonios" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#01055E] bg-[#A5E0F9]/30 px-3 py-1 rounded-full border border-[#00E8F8]/30">
+          Historias de Éxito
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#01055E] tracking-tight">
+          Testimonios de líderes de tecnología y operaciones
+        </h2>
+        <p class="text-slate-600 text-sm">
+          Comentarios de directivos que han transformado sus organizaciones con NeoAddition.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="text-[#00E8F8] text-4xl font-serif mb-4 leading-none">“</div>
+            <p class="text-slate-700 text-sm italic leading-relaxed mb-6">
+              Asimismo, reconozco que la calidad del trabajo realizado ha sido excepcional, logrando cumplir con todos los objetivos establecidos de forma rigurosa y a tiempo.
+            </p>
+          </div>
+          <div class="pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#01055E] text-[#00E8F8] flex items-center justify-center font-bold text-xs">
+              RG
+            </div>
+            <div>
+              <p class="font-bold text-sm text-[#01055E]">Rafael Guajardo Briones</p>
+              <p class="text-xs text-slate-500">Dirección Divisional de Tecnología</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-[#00E8F8]/50 shadow-md flex flex-col justify-between">
+          <div>
+            <div class="text-[#00E8F8] text-4xl font-serif mb-4 leading-none">“</div>
+            <p class="text-slate-700 text-sm italic leading-relaxed mb-6">
+              Más allá de su experiencia técnica, NeoAddition ha demostrado ser un socio confiable y comprometido. Su capacidad para colaborar con nuestros equipos fue clave.
+            </p>
+          </div>
+          <div class="pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#090246] text-[#A5E0F9] flex items-center justify-center font-bold text-xs">
+              EN
+            </div>
+            <div>
+              <p class="font-bold text-sm text-[#01055E]">Efraín Núñez Farfán</p>
+              <p class="text-xs text-slate-500">Chief Operating Officer (COO)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="text-[#00E8F8] text-4xl font-serif mb-4 leading-none">“</div>
+            <p class="text-slate-700 text-sm italic leading-relaxed mb-6">
+              Cabe destacar que su intervención ocurrió en un momento clave en el que estábamos estancados en el uso de la plataforma, destrabando la entrega de valor rápidamente.
+            </p>
+          </div>
+          <div class="pt-5 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#010441] text-[#FFBC7D] flex items-center justify-center font-bold text-xs">
+              HS
+            </div>
+            <div>
+              <p class="font-bold text-sm text-[#01055E]">Héctor Salvador Gutiérrez</p>
+              <p class="text-xs text-slate-500">Product Owner</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRE-FOOTER CALL TO ACTION (Conversión Inmediata) -->
+  <section id="contacto" class="bg-gradient-to-br from-[#090246] via-[#01055E] to-[#010441] text-white py-16 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-[#00E8F8]/15 border border-[#00E8F8]/30 text-xs font-bold uppercase tracking-wider text-[#00E8F8]">
+        Da el siguiente paso
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+        ¿Listo para acelerar la transformación de tu empresa?
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Agenda una sesión exploratoria de 20 minutos con uno de nuestros consultores de ServiceNow y Creatio para identificar tus principales oportunidades de automatización.
+      </p>
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="mailto:contacto@neoaddition.com?subject=Consulta%20de%20Transformaci%C3%B3n%20Digital" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-sm tracking-wide text-[#01055E] bg-[#00E8F8] hover:bg-[#3bf1ff] glow-cyan-sm transition-all shadow-lg hover:-translate-y-0.5">
+          <span>Agendar Sesión con Consultor</span>
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </a>
+        <a href="tel:+524420000000" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 rounded-xl font-semibold text-sm text-slate-200 border border-slate-600 hover:border-[#00E8F8] hover:text-[#00E8F8] transition-all">
+          <span>Llamar a Oficina Querétaro</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (Con corrección del error tipográfico en el email y estructura de 4 columnas) -->
+  <footer class="bg-[#010331] text-slate-400 py-16 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Col 1: Brand & Bio -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-[#01055E] flex items-center justify-center font-bold text-sm text-[#00E8F8] border border-[#00E8F8]/40">
+              NA
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">Neo<span class="text-[#00E8F8]">Addition</span></span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Tu partner estratégico en la era digital. Diseñamos e implementamos soluciones empresariales en México, Estados Unidos y Canadá.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#00E8F8] hover:text-[#01055E] text-slate-300 flex items-center justify-center transition-colors" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#00E8F8] hover:text-[#01055E] text-slate-300 flex items-center justify-center transition-colors" aria-label="Facebook">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+            <a href="https://medium.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#00E8F8] hover:text-[#01055E] text-slate-300 flex items-center justify-center transition-colors" aria-label="Medium">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.956l5.378 11.795 4.728-11.795h6.635v.403l-1.921 1.841c-.162.12-.247.319-.224.521v13.067c-.023.202.062.401.224.521l1.879 1.841v.403h-9.412v-.403l1.935-1.87c.18-.18.18-.232.18-.507v-10.027l-5.388 12.807h-.728l-6.255-12.807v8.905c-.045.383.085.766.347 1.042l2.503 3.033v.403h-6.956v-.403l2.503-3.033c.262-.276.392-.659.347-1.042v-11.831z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Services Quick Links -->
+        <div class="space-y-3">
+          <p class="text-white font-bold text-sm tracking-wide">Soluciones</p>
+          <ul class="space-y-2">
+            <li><a href="#soluciones" class="hover:text-[#00E8F8] transition-colors">Estrategia de Negocios</a></li>
+            <li><a href="#soluciones" class="hover:text-[#00E8F8] transition-colors">Digitalización de Procesos</a></li>
+            <li><a href="#soluciones" class="hover:text-[#00E8F8] transition-colors">Service Management Office (SMO)</a></li>
+            <li><a href="#partners" class="hover:text-[#00E8F8] transition-colors">Implementación ServiceNow</a></li>
+            <li><a href="#partners" class="hover:text-[#00E8F8] transition-colors">Consultoría Creatio CRM & BPM</a></li>
+            <li><a href="#" class="hover:text-[#00E8F8] transition-colors">Neo Security Solutions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: International Locations -->
+        <div class="space-y-3">
+          <p class="text-white font-bold text-sm tracking-wide">Sedes Internacionales</p>
+          <ul class="space-y-2.5">
+            <li class="flex items-start gap-2">
+              <span class="text-slate-300">🇲🇽</span>
+              <div>
+                <strong class="text-white block font-medium">México</strong>
+                <span class="text-slate-400">Querétaro, Qro.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-slate-300">🇨🇦</span>
+              <div>
+                <strong class="text-white block font-medium">Canadá</strong>
+                <span class="text-slate-400">Vancouver, BC.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-slate-300">🇺🇸</span>
+              <div>
+                <strong class="text-white block font-medium">Estados Unidos</strong>
+                <span class="text-slate-400">Miami Beach, FL.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Verified Email -->
+        <div class="space-y-3">
+          <p class="text-white font-bold text-sm tracking-wide">Contacto Directo</p>
+          <div class="space-y-2">
+            <!-- Correo Corregido y Verificado -->
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+              <span class="text-[10px] text-[#00E8F8] block font-mono uppercase tracking-wider">Correo Institucional</span>
+              <a href="mailto:contacto@neoaddition.com" class="text-white hover:text-[#00E8F8] font-bold text-xs transition-colors flex items-center gap-1.5 mt-0.5">
+                <span>contacto@neoaddition.com</span>
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1 rounded">Corregido ✓</span>
+              </a>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-normal">
+              Horario de atención: Lunes a Viernes 9:00 AM - 6:00 PM (CST)
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
+        <p>© 2026 NeoAddition. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">Aviso de Privacidad</a>
+          <a href="#" class="hover:text-white transition-colors">Términos del Servicio</a>
+          <a href="#" class="hover:text-white transition-colors">Mapa del Sitio</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- COMPARISON MODAL / DRAWER (Para revisar cambios contra la web actual) -->
+  <aside id="comparativa" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#01055E] bg-[#A5E0F9]/30 px-3 py-1 rounded-full">
+            Hoja de Comparación Técnica
+          </span>
+          <h3 class="text-xl font-bold text-[#01055E] mt-2">Diferencias clave: Sitio Actual vs. Prototipo Propuesto</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-mono">Status: Listo para feedback</span>
+      </div>
+
+      <div class="overflow-x-auto mt-6">
+        <table class="w-full text-left text-xs text-slate-600">
+          <thead class="bg-slate-100 text-slate-800 uppercase font-bold text-[11px]">
+            <tr>
+              <th class="p-3 rounded-l-lg">Componente</th>
+              <th class="p-3">Sitio Actual (neoaddition.com)</th>
+              <th class="p-3 text-[#01055E]">Prototipo de Rediseño</th>
+              <th class="p-3 rounded-r-lg">Impacto</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 font-normal">
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Jerarquía SEO</td>
+              <td class="p-3 text-red-600 font-mono">4 etiquetas H1 simultáneas</td>
+              <td class="p-3 text-emerald-700 font-semibold font-mono">1 H1 semántico estructurado</td>
+              <td class="p-3 text-slate-700">Mayor indexación y ranking en Google</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Llamada a la Acción (CTA)</td>
+              <td class="p-3 text-amber-700">Ausente en el Hero y Header</td>
+              <td class="p-3 text-emerald-700 font-semibold">Doble botón (Primario Cian + Secundario)</td>
+              <td class="p-3 text-slate-700">Multiplica la tasa de conversión y leads</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Tarjetas de Soluciones</td>
+              <td class="p-3 text-amber-700">Solo título y enlace genérico "Ver más"</td>
+              <td class="p-3 text-emerald-700 font-semibold">Microcopy explicativo, checklist e iconos</td>
+              <td class="p-3 text-slate-700">Reduce el rebote al informar claramente</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Beneficios "Por qué elegirnos"</td>
+              <td class="p-3 text-amber-700">Guiones de texto plano sin formato</td>
+              <td class="p-3 text-emerald-700 font-semibold">Chips / Badges modernos con numeración</td>
+              <td class="p-3 text-slate-700">Lectura ágil y escaneo visual profesional</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Datos de Contacto</td>
+              <td class="p-3 text-red-600 font-mono font-bold">contacto@neoadittion.com (Error tipográfico)</td>
+              <td class="p-3 text-emerald-700 font-mono font-bold">contacto@neoaddition.com (Corregido)</td>
+              <td class="p-3 text-slate-700">Recupera los correos de prospectos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </aside>
+
+
+  <!-- INTERACTIVE LOGIC: SLIDER, 3D TILT, SCENARIOS & HOTSPOTS -->
+  <script>
+    // --- 1. Interactive Before / After Drag Slider (Rock-Solid Clip-Path Implementation) ---
+    const sliderContainer = document.getElementById('view-slider-wrapper');
+    const beforeLayer = document.getElementById('before-layer');
+    const sliderHandle = document.getElementById('slider-handle');
+    let isDragging = false;
+
+    function updateSlider(clientX) {
+      if (!sliderContainer || !beforeLayer || !sliderHandle) return;
+      const rect = sliderContainer.getBoundingClientRect();
+      let offsetX = clientX - rect.left;
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+      const percent = (offsetX / rect.width) * 100;
+      
+      // Use clip-path polygon so the layers NEVER squash, wrap or overlap!
+      beforeLayer.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+      beforeLayer.style.webkitClipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+      sliderHandle.style.left = `${percent}%`;
+    }
+
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateSlider(e.clientX);
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Mobile touch support
+      sliderContainer.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        if (e.touches[0]) updateSlider(e.touches[0].clientX);
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        if (e.touches[0]) updateSlider(e.touches[0].clientX);
+      }, { passive: true });
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    // --- View Mode Toggle (Slider vs Side-by-Side) ---
+    function setViewMode(mode) {
+      const sliderView = document.getElementById('view-slider-wrapper');
+      const sideView = document.getElementById('view-side-wrapper');
+      const btnSlider = document.getElementById('btn-mode-slider');
+      const btnSide = document.getElementById('btn-mode-side');
+
+      if (mode === 'slider') {
+        sliderView.classList.remove('hidden');
+        sideView.classList.add('hidden');
+        btnSlider.className = "px-3.5 py-1.5 rounded-lg font-bold transition-all bg-[#00E8F8] text-[#01055E] shadow-sm flex items-center gap-1.5";
+        btnSide.className = "px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1.5";
+      } else {
+        sliderView.classList.add('hidden');
+        sideView.classList.remove('hidden');
+        btnSide.className = "px-3.5 py-1.5 rounded-lg font-bold transition-all bg-[#00E8F8] text-[#01055E] shadow-sm flex items-center gap-1.5";
+        btnSlider.className = "px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-300 hover:text-white flex items-center gap-1.5";
+      }
+    }
+
+    // --- 2. Interactive Scenarios Switching ---
+    const scenarios = {
+      itsm: {
+        beforeTitle: "Gestión de Tickets e Incidentes en Correo",
+        beforeSub: "Sistemas heredados, tickets perdidos y tiempos de respuesta de varios días",
+        beforeMetricVal: "14 Días",
+        beforeMetricLbl: "Resolución de Incidentes",
+        beforeNode1T: "Entradas Manuales",
+        beforeNode1D: "Captura en Excel repetitiva con alto riesgo de error humano y duplicidad de registros.",
+        beforeNode2T: "Aprobaciones Lentas",
+        beforeNode2D: "Hilos interminables de emails, llamadas y firmas en papel estancadas en bandejas.",
+        beforeNode3T: "Cero Visibilidad",
+        beforeNode3D: "Reportes obsoletos construidos manualmente al final de mes sin datos en tiempo real.",
+        afterTitle: "ServiceNow ITSM & Service Desk Automatizado",
+        afterSub: "Resolución acelerada por catálogo digital, IA y orquestación",
+        afterMetricVal: "-84%",
+        afterMetricLbl: "Tiempo de Resolución",
+        node1: { t: "Auto-clasificación IA", d: "El incidente se categoriza y prioriza al instante según severidad del negocio." },
+        node2: { t: "Enrutamiento Ágil", d: "Asignación automática al ingeniero certificado con menor carga operativa." },
+        node3: { t: "Cumplimiento de SLA", d: "Monitoreo 24/7 con alertas proactivas antes de cualquier incumplimiento." }
+      },
+      crm: {
+        beforeTitle: "Leads y Oportunidades Perdidas en Excel",
+        beforeSub: "Falta de seguimiento a clientes, cotizaciones demoradas y datos desactualizados",
+        beforeMetricVal: "48 Horas",
+        beforeMetricLbl: "Generación de Cotización",
+        beforeNode1T: "Seguimiento Manual",
+        beforeNode1D: "Vendedores gestionan sus prospectos en libretas u hojas locales sin compartir información.",
+        beforeNode2T: "Cotizaciones Lentas",
+        beforeNode2D: "Cada cotización requiere múltiples llamadas y validaciones fiscales manuales.",
+        beforeNode3T: "Fugas de Clientes",
+        beforeNode3D: "Clientes potenciales que abandonan el proceso por falta de respuesta oportuna.",
+        afterTitle: "Creatio No-Code CRM & Ventas Automatizadas",
+        afterSub: "Pipeline comercial 100% visible con aprobaciones de crédito automáticas",
+        afterMetricVal: "+65%",
+        afterMetricLbl: "Tasa de Cierre de Negocios",
+        node1: { t: "Captura Omnicanal", d: "Prospectos integrados desde WhatsApp, formulario web y LinkedIn en una sola vista." },
+        node2: { t: "Workflows de Aprobación", d: "Validación de precios y descuentos en minutos con reglas No-Code configurables." },
+        node3: { t: "Analítica Predictiva", d: "Pronósticos de ventas y alertas de clientes en riesgo de abandono." }
+      },
+      smo: {
+        beforeTitle: "Descoordinación entre TI y Operaciones",
+        beforeSub: "Cada departamento trabaja aislado sin gobernanza ni estándares comunes",
+        beforeMetricVal: "0%",
+        beforeMetricLbl: "Visibilidad Transversal",
+        beforeNode1T: "Silos Departamentales",
+        beforeNode1D: "TI, Finanzas y Operaciones usan herramientas aisladas sin cruce de datos.",
+        beforeNode2T: "Falta de ITIL 4",
+        beforeNode2D: "Cambios en producción sin control que generan caídas de sistemas y pérdidas.",
+        beforeNode3T: "Sin Métricas Claras",
+        beforeNode3D: "La alta dirección desconoce el rendimiento de los proveedores y la calidad del servicio.",
+        afterTitle: "Service Management Office (SMO) Centralizada",
+        afterSub: "Gobierno unificado, catálogo empresarial de servicios y excelencia continua",
+        afterMetricVal: "+95%",
+        afterMetricLbl: "Satisfacción del Usuario Final",
+        node1: { t: "Catálogo Único ESM", d: "Portal unificado para RRHH, Finanzas, Compras y TI con autoservicio." },
+        node2: { t: "Gobierno ITIL 4", d: "Estandarización de cambios y despliegues con cero interrupciones en producción." },
+        node3: { t: "Cuadros de Mando Ejecutivos", d: "Visibilidad integral para la alta dirección sobre el retorno de inversión tecnológica." }
+      }
+    };
+
+    function setScenario(key) {
+      const s = scenarios[key];
+      if (!s) return;
+
+      // Update button styles
+      ['itsm', 'crm', 'smo'].forEach(k => {
+        const btn = document.getElementById('btn-' + k);
+        if (btn) {
+          if (k === key) {
+            btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#01055E] text-[#00E8F8] border border-[#00E8F8]/50 shadow-sm scale-105";
+          } else {
+            btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10";
+          }
+        }
+      });
+
+      // Update Slider View elements
+      document.getElementById('before-title').innerText = s.beforeTitle;
+      document.getElementById('before-subtitle').innerText = s.beforeSub;
+      document.getElementById('before-metric-val').innerText = s.beforeMetricVal;
+      document.getElementById('before-metric-lbl').innerText = s.beforeMetricLbl;
+
+      document.getElementById('before-node1-title').innerText = s.beforeNode1T;
+      document.getElementById('before-node1-desc').innerText = s.beforeNode1D;
+      document.getElementById('before-node2-title').innerText = s.beforeNode2T;
+      document.getElementById('before-node2-desc').innerText = s.beforeNode2D;
+      document.getElementById('before-node3-title').innerText = s.beforeNode3T;
+      document.getElementById('before-node3-desc').innerText = s.beforeNode3D;
+
+      document.getElementById('after-title').innerText = s.afterTitle;
+      document.getElementById('after-subtitle').innerText = s.afterSub;
+      document.getElementById('after-metric-val').innerText = s.afterMetricVal;
+      document.getElementById('after-metric-lbl').innerText = s.afterMetricLbl;
+
+      document.getElementById('after-node1-title').innerText = s.node1.t;
+      document.getElementById('after-node1-desc').innerText = s.node1.d;
+      document.getElementById('after-node2-title').innerText = s.node2.t;
+      document.getElementById('after-node2-desc').innerText = s.node2.d;
+      document.getElementById('after-node3-title').innerText = s.node3.t;
+      document.getElementById('after-node3-desc').innerText = s.node3.d;
+
+      // Update Side-by-Side elements
+      document.getElementById('side-before-metric').innerText = s.beforeMetricVal;
+      document.getElementById('side-before-title').innerText = s.beforeTitle;
+      document.getElementById('side-before-sub').innerText = s.beforeSub;
+      document.getElementById('side-after-metric').innerText = s.afterMetricVal;
+      document.getElementById('side-after-title').innerText = s.afterTitle;
+      document.getElementById('side-after-sub').innerText = s.afterSub;
+
+      // Reset slider position to 50% cleanly
+      beforeLayer.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+      beforeLayer.style.webkitClipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+      sliderHandle.style.left = '50%';
+    }
+
+    // --- 3. Interactive Hotspots Detail Trigger ---
+    const hotspotDetails = {
+      1: {
+        title: "Recepción y Diagnóstico con IA Operativa",
+        text: "Integramos el catálogo de servicios de ServiceNow para que cada incidente se auto-diagnostique en milisegundos. Elimina la pérdida de tiempo en triaje manual y canaliza la solución directamente a la cola de atención correspondiente."
+      },
+      2: {
+        title: "Automatización de Flujos No-Code (Creatio & ServiceNow)",
+        text: "Permite a los analistas de negocio modelar y adaptar procesos sin depender de largos ciclos de programación. Los flujos conectan bases de datos, validaciones fiscales y sistemas ERP sin fricciones."
+      },
+      3: {
+        title: "Monitoreo y Cuadros de Mando en Vivo (SMO)",
+        text: "Tableros de control ejecutivos que reflejan la salud de la infraestructura, satisfacción de usuarios y SLAs en tiempo real, facilitando la toma de decisiones basada en datos comprobables."
+      }
+    };
+
+    function toggleHotspot(id) {
+      const modal = document.getElementById('hotspot-modal');
+      const title = document.getElementById('hotspot-modal-title');
+      const text = document.getElementById('hotspot-modal-text');
+      const detail = hotspotDetails[id];
+      if (!modal || !detail) return;
+
+      title.innerText = detail.title;
+      text.innerText = detail.text;
+      modal.classList.remove('hidden');
+      modal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeHotspot() {
+      const modal = document.getElementById('hotspot-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // --- 4. 3D Tilt Effect on Hero Card ---
+    const heroCard = document.getElementById('hero-tilt-card');
+    if (heroCard) {
+      heroCard.addEventListener('mousemove', (e) => {
+        const rect = heroCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      heroCard.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+</script>
+
+</body>
+</html>

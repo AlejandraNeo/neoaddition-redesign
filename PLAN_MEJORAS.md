@@ -142,6 +142,7 @@ Se preserva íntegramente la paleta de identidad cromática extraída del Kit Gl
 
 ## 4. Comparativa Visual: Antes vs. Después (Concepto de Maquetación)
 
+````carousel
 ```html
 <!-- ANTES: Sección de Beneficios con texto plano y guiones -->
 <div class="elementor-widget-container">
@@ -151,7 +152,7 @@ Se preserva íntegramente la paleta de identidad cromática extraída del Kit Gl
   <p>- Mejora en la productividad - Mayor colaboración cross-areas - Rapidez en la toma de decisiones</p>
 </div>
 ```
-
+<!-- slide -->
 ```html
 <!-- DESPUÉS: Tarjetas interactivas con sistema de diseño NeoAddition -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -174,10 +175,30 @@ Se preserva íntegramente la paleta de identidad cromática extraída del Kit Gl
   </div>
 </div>
 ```
+````
 
 ---
 
 ## 5. Plan de Acción y Cronograma de Ejecución
+
+```mermaid
+gantt
+    title Plan de Implementación de Mejoras Visuales (3 Fases)
+    dateFormat  YYYY-MM-DD
+    section Fase 1: Inmediata
+    Corrección tipográfica email footer       :done,    des1, 2026-10-17, 1d
+    Unificación de etiquetas H1 a H2/H3        :active,  des2, 2026-10-18, 2d
+    Añadir botón CTA en Header                :         des3, 2026-10-19, 2d
+    section Fase 2: Rediseño UI
+    Rediseño de Hero Section con doble CTA    :         des4, 2026-10-21, 4d
+    Tarjetas de Soluciones y Beneficios       :         des5, 2026-10-25, 4d
+    Franja de Contadores y Marquee de Logos   :         des6, 2026-10-29, 3d
+    Pre-footer de conversión y Testimonios    :         des7, 2026-11-02, 3d
+    section Fase 3: Optimización
+    Depuración de plugins CSS/JS huérfanos    :         des8, 2026-11-06, 4d
+    Auditoría WCAG (contraste y etiquetas ALT):         des9, 2026-11-10, 3d
+    Pruebas Responsive y Core Web Vitals      :         des10, 2026-11-13, 3d
+```
 
 ### Detalle de las Fases de Trabajo:
 
